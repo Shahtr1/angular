@@ -5,11 +5,11 @@
 }
 
 .course-actions {
-    display: flex;
-    justify-content: center;
+    text-align: center;
+
 }
 
 .course-actions button {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 

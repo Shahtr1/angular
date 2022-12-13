@@ -14,12 +14,18 @@
     <p>In Promo: {{promoTotal$ | async}}</p>
   </div>
 
+  <div class="spinner-container" *ngIf="!(loading$ | async )">
+
+    <mat-spinner></mat-spinner>
+
+  </div>
 
   <mat-tab-group>
 
     <mat-tab label="Beginners">
 
-      <courses-card-list (courseChanged)="reload()" [courses]="beginnerCourses$ | async">
+      <courses-card-list (courseChanged)="reload()"
+        [courses]="beginnerCourses$ | async">
 
       </courses-card-list>
 
@@ -27,7 +33,10 @@
 
     <mat-tab label="Advanced">
 
-      <courses-card-list (courseChanged)="reload()" [courses]="advancedCourses$ | async"></courses-card-list>
+      <courses-card-list  (courseChanged)="reload()"
+        [courses]="advancedCourses$ | async"
+
+      ></courses-card-list>
 
     </mat-tab>
 
@@ -35,3 +44,4 @@
 
 
 </div>
+

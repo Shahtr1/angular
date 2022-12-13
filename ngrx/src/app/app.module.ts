@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, isDevMode } from "@angular/core";
+import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -19,7 +19,6 @@ import { environment } from "../environments/environment";
 import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
 
 import { EffectsModule } from "@ngrx/effects";
-import { EntityDataModule } from "@ngrx/data";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { metaReducers, reducers } from "./reducers";
 import { AuthGuard } from "./auth/auth.guard";
@@ -60,10 +59,11 @@ const routes: Routes = [
         strictStateSerializability: true,
       },
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     EffectsModule.forRoot([]),
-
-    // dispatching actions
     StoreRouterConnectingModule.forRoot({
       stateKey: "router",
       routerState: RouterState.Minimal,
